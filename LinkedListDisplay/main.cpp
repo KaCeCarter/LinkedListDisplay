@@ -94,22 +94,37 @@ void insert(int number)
         lastNode->next = temp; // combined last node with temp 
     }
 }
-void remove(node *head, node *last)
+void removeLastItem()
 {
-  if(isEmpty(head))
+  if(headOfList == nullptr)
       cout << "The list is already empty. \n";
-  else if (head == last)
+  else
   {
-        delete head;
-        head = nullptr;
-        last = nullptr;
-    }
-    
-    else
-    {
-        node *temp = head;
-        head = head->next;
-        delete temp;
+      cout << "The list contains: \n";
+      node *current;
+        node *secondTolast;
+      current = headOfList;
+      // checking if it is a one item list going to remove it so head of list points nullptr
+     
+      if (headOfList -> next == nullptr)
+      {
+          current = headOfList;
+          headOfList = nullptr;
+          
+          delete current;
+      } else
+      {
+          
+          do
+          {
+              secondTolast = current;
+              current = current->next;
+          } while(current -> next != nullptr);
+          secondTolast -> next = nullptr;
+          delete current;
+          
+      } // close of if else for list size checking
+      
     }
     
     
@@ -137,8 +152,6 @@ void showList()
 
 int main()
 {
-    node *head = nullptr;
-    node *last = nullptr;
     char choice;
     int number;
     
@@ -152,7 +165,7 @@ int main()
                 cin >> number;
                 insert(number);
                 break;
-            case '2': remove(head, last);
+            case '2': removeLastItem();
                 break;
             case '3': showList();
                 break;
