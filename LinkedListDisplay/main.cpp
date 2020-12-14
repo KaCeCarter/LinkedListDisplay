@@ -110,7 +110,8 @@ void removeLastItem()
       {
           current = headOfList;
           headOfList = nullptr;
-          
+          // testing testing
+    
           delete current;
       } else
       {
